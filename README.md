@@ -1,183 +1,197 @@
-# Práctica: Complejidad Algorítmica
+# Análisis de Complejidad Algorítmica
 
-## Información General
+Este proyecto implementa y analiza la complejidad temporal y espacial de algoritmos fundamentales de búsqueda y ordenamiento en lenguaje C.
 
-**Materia:** Análisis y Diseño de Algoritmos  
-**Escuela:** Escuela Superior de Cómputo (ESCOM)  
-**Carrera:** Licenciatura en Ciencia de Datos  
-**Grupo:** 3AV1  
+## 📋 Algoritmos Implementados
 
-### Integrantes del Equipo
-- **Valderrama López Fanny**
-- **Elena Carmina Mata González**
+### 🔍 Algoritmos de Búsqueda
+1. **Búsqueda Lineal** - `busqueda_lineal.c`
+   - Complejidad temporal: O(n)
+   - Complejidad espacial: O(1)
 
----
+2. **Búsqueda Binaria** - `busqueda_binaria.c`
+   - Complejidad temporal: O(log n)
+   - Complejidad espacial: O(log n) - versión recursiva
 
-## Objetivo de la Práctica
+### 🔄 Algoritmos de Ordenamiento
+3. **Ordenamiento Burbuja** - `ordenamiento_burbuja.c`
+   - Complejidad temporal: O(n²)
+   - Complejidad espacial: O(1)
 
-Analizar y comparar la complejidad algorítmica de diferentes algoritmos de búsqueda, ordenamiento y recursión mediante la medición de tiempo de ejecución y consumo de memoria.
+4. **Merge Sort** - `merge_sort.c`
+   - Complejidad temporal: O(n log n)
+   - Complejidad espacial: O(n)
 
----
+### 🔢 Algoritmo Matemático
+5. **Fibonacci Recursivo** - `fibonacci_recursivo.c`
+   - Complejidad temporal: O(2ⁿ)
+   - Complejidad espacial: O(n)
 
-## Algoritmos a Implementar
+## 🚀 Instrucciones de Uso
 
-### 1. Búsqueda Lineal
-- **Complejidad temporal:** O(n)
-- **Complejidad espacial:** O(1)
-- **Descripción:** Búsqueda secuencial elemento por elemento
+### Prerequisitos
+- Compilador GCC
+- Python 3 (para generar gráficas)
+- Make (opcional, para usar Makefile)
 
-### 2. Búsqueda Binaria
-- **Complejidad temporal:** O(log n)
-- **Complejidad espacial:** O(1)
-- **Descripción:** Búsqueda en arreglo ordenado dividiendo por la mitad
+### Opción 1: Usando Makefile (Recomendado)
 
-### 3. Ordenamiento por Burbuja (Bubble Sort)
-- **Complejidad temporal:** O(n²)
-- **Complejidad espacial:** O(1)
-- **Descripción:** Compara elementos adyacentes e intercambia si están en orden incorrecto
+```bash
+# Compilar todos los programas
+make compile
 
-### 4. Merge Sort
-- **Complejidad temporal:** O(n log n)
-- **Complejidad espacial:** O(n)
-- **Descripción:** Divide el arreglo en mitades, ordena recursivamente y combina
+# Ejecutar análisis completo
+make run-all
 
-### 5. Algoritmo Recursivo de Fibonacci
-- **Complejidad temporal:** O(2^n)
-- **Complejidad espacial:** O(n)
-- **Descripción:** Calcula el n-ésimo número de Fibonacci usando recursión
+# Instalar dependencias de Python para gráficas
+make install-python-deps
 
----
+# Generar gráficas
+make graficas
 
-## Metodología de Análisis
+# Análisis completo con gráficas
+make analysis
 
-### Tamaños de Prueba
-- **Arreglos:** n = 10³, 10⁴, 10⁵ elementos
-- **Fibonacci:** Valores de n entre 1 y 20
+# Ver todas las opciones disponibles
+make help
+```
 
-### Métricas a Medir
-1. **Tiempo de Ejecución**
-   - Medición en milisegundos/microsegundos
-   - Múltiples ejecuciones para obtener promedio
-   - Análisis de comportamiento asintótico
+### Opción 2: Compilación Manual
 
-2. **Consumo de Memoria**
-   - Memoria utilizada durante la ejecución
-   - Análisis de complejidad espacial
-   - Comparación entre algoritmos
+```bash
+# Compilar programas individuales
+gcc -Wall -Wextra -O2 -o busqueda_lineal busqueda_lineal.c
+gcc -Wall -Wextra -O2 -o busqueda_binaria busqueda_binaria.c
+gcc -Wall -Wextra -O2 -o ordenamiento_burbuja ordenamiento_burbuja.c
+gcc -Wall -Wextra -O2 -o merge_sort merge_sort.c
+gcc -Wall -Wextra -O2 -o fibonacci_recursivo fibonacci_recursivo.c
 
-### Herramientas de Análisis
-- **Gráficas de Tiempo vs Tamaño de Entrada**
-- **Gráficas de Memoria vs Tamaño de Entrada**
-- **Tablas Comparativas**
-- **Análisis de Comportamiento Asintótico**
+# Compilar programa de análisis completo
+gcc -Wall -Wextra -O2 -o analisis_completo analisis_completo.c
 
----
+# Ejecutar análisis completo
+./analisis_completo
 
-## Estructura del Proyecto
+# Generar gráficas
+python3 generar_graficas.py
+```
+
+## 📊 Tamaños de Prueba
+
+### Para Algoritmos de Búsqueda y Ordenamiento:
+- n = 1,000 elementos
+- n = 10,000 elementos
+- n = 100,000 elementos
+
+### Para Fibonacci Recursivo:
+- Valores de n entre 1 y 20
+
+## 📈 Análisis de Resultados
+
+### Mediciones Realizadas
+1. **Tiempo de Ejecución**: Medido en milisegundos usando `clock()`
+2. **Uso de Memoria**: Medido en KB usando `getrusage()`
+
+### Archivos de Salida
+- `resultados_busqueda_lineal.txt`
+- `resultados_busqueda_binaria.txt`
+- `resultados_burbuja.txt`
+- `resultados_merge_sort.txt`
+- `resultados_fibonacci.txt`
+
+### Gráficas Generadas
+- `comparacion_tiempo_algoritmos.png`
+- `comparacion_memoria_algoritmos.png`
+- `fibonacci_analisis.png`
+- `tabla_comparativa_complejidades.png`
+
+## 🔬 Análisis Teórico vs Observado
+
+### Complejidades Temporales Esperadas
+| Algoritmo | Mejor Caso | Caso Promedio | Peor Caso |
+|-----------|------------|---------------|-----------|
+| Búsqueda Lineal | O(1) | O(n) | O(n) |
+| Búsqueda Binaria | O(1) | O(log n) | O(log n) |
+| Burbuja | O(n) | O(n²) | O(n²) |
+| Merge Sort | O(n log n) | O(n log n) | O(n log n) |
+| Fibonacci | O(2ⁿ) | O(2ⁿ) | O(2ⁿ) |
+
+### Observaciones Esperadas
+1. **Búsqueda Lineal**: Crecimiento lineal con el tamaño del arreglo
+2. **Búsqueda Binaria**: Crecimiento logarítmico, muy eficiente
+3. **Burbuja**: Crecimiento cuadrático, ineficiente para arreglos grandes
+4. **Merge Sort**: Crecimiento n log n, eficiente y estable
+5. **Fibonacci**: Crecimiento exponencial, se vuelve impracticable rápidamente
+
+## 📋 Casos de Prueba
+
+### Búsquedas
+- **Lineal**: Busca el último elemento (peor caso)
+- **Binaria**: Busca el último elemento en arreglo ordenado
+
+### Ordenamientos
+- **Burbuja**: Arreglo en orden descendente (peor caso)
+- **Merge Sort**: Arreglo aleatorio (caso promedio)
+
+### Fibonacci
+- Valores incrementales de 1 a 20 para observar crecimiento exponencial
+
+## 🔧 Compilación y Optimización
+
+### Flags de Compilación Utilizados
+- `-Wall`: Mostrar todas las advertencias
+- `-Wextra`: Advertencias adicionales
+- `-O2`: Optimización nivel 2
+- `-std=c99`: Estándar C99
+
+### Consideraciones de Medición
+- Se utiliza `clock()` para medir tiempo de CPU
+- Se utiliza `getrusage()` para medir uso máximo de memoria
+- Los arreglos se llenan de manera determinística para consistencia
+- Se realizan mediciones antes y después de cada algoritmo
+
+## 📚 Dependencias de Python
+
+Para generar las gráficas se requieren:
+```bash
+pip3 install matplotlib pandas seaborn numpy
+```
+
+## 🧹 Limpieza
+
+```bash
+# Limpiar ejecutables
+make clean
+
+# Limpiar datos y gráficas
+make clean-data
+
+# Limpieza completa
+make clean-all
+```
+
+## 📝 Estructura del Proyecto
 
 ```
 Complejidad-Algoritmica/
 ├── README.md
-├── src/
-│   ├── busqueda_lineal/
-│   ├── busqueda_binaria/
-│   ├── bubble_sort/
-│   ├── merge_sort/
-│   └── fibonacci/
-├── resultados/
-│   ├── graficas_tiempo/
-│   ├── graficas_memoria/
-│   └── tablas_comparativas/
-└── docs/
-    └── analisis_complejidad.md
+├── Makefile
+├── busqueda_lineal.c
+├── busqueda_binaria.c
+├── ordenamiento_burbuja.c
+├── merge_sort.c
+├── fibonacci_recursivo.c
+├── analisis_completo.c
+├── generar_graficas.py
+└── [archivos generados]
+    ├── resultados_*.txt
+    └── *.png
 ```
 
----
+## 🎯 Objetivos de Aprendizaje
 
-## Lenguajes de Programación
-
-Se implementarán los algoritmos en los siguientes lenguajes:
-- **Python**
-- **Java**
-- **C++**
-
----
-
-## Criterios de Evaluación
-
-### Implementación (40%)
-- Correctitud de los algoritmos
-- Manejo de casos edge
-- Documentación del código
-
-### Análisis Experimental (40%)
-- Precisión en las mediciones
-- Calidad de las gráficas
-- Interpretación de resultados
-
-### Reporte (20%)
-- Análisis de complejidad teórica vs experimental
-- Conclusiones y observaciones
-- Comparación entre lenguajes
-
----
-
-## Instrucciones de Ejecución
-
-### Requisitos
-- Python 3.8+
-- Java 11+
-- Compilador C++ (g++, clang++)
-- Herramientas de medición de memoria
-
-### Pasos para Ejecutar
-1. Clonar/descargar el repositorio
-2. Navegar al directorio del algoritmo deseado
-3. Compilar/ejecutar según el lenguaje
-4. Revisar resultados en la carpeta `resultados/`
-
----
-
-## Resultados Esperados
-
-### Análisis de Tiempo
-- **Búsqueda Lineal:** Crecimiento lineal O(n)
-- **Búsqueda Binaria:** Crecimiento logarítmico O(log n)
-- **Bubble Sort:** Crecimiento cuadrático O(n²)
-- **Merge Sort:** Crecimiento n log n O(n log n)
-- **Fibonacci:** Crecimiento exponencial O(2^n)
-
-### Análisis de Memoria
-- **Algoritmos in-place:** Memoria constante
-- **Algoritmos con arrays auxiliares:** Memoria proporcional al tamaño
-- **Algoritmos recursivos:** Memoria proporcional a la profundidad de recursión
-
----
-
-## Conclusiones Esperadas
-
-1. **Correlación Teórica vs Experimental:** Verificar que los resultados experimentales coincidan con el análisis teórico de complejidad.
-
-2. **Diferencias entre Lenguajes:** Observar variaciones en rendimiento entre Python, Java y C++.
-
-3. **Comportamiento de Memoria:** Analizar si el consumo de memoria sigue patrones similares al tiempo de ejecución.
-
-4. **Escalabilidad:** Identificar qué algoritmos son más eficientes para diferentes tamaños de entrada.
-
----
-
-## Fecha de Entrega
-**Por definir según calendario académico**
-
----
-
-## Notas Adicionales
-
-- Todos los algoritmos deben incluir comentarios explicativos
-- Las mediciones deben ser precisas y repetibles
-- Las gráficas deben ser claras y profesionales
-- El análisis debe incluir observaciones sobre el comportamiento de cada algoritmo
-
----
-
-*Este proyecto forma parte de la materia Análisis y Diseño de Algoritmos de la carrera de Licenciatura en Ciencia de Datos en ESCOM.*
+1. Comprender las diferencias prácticas entre complejidades teóricas
+2. Observar cómo el crecimiento del tamaño de entrada afecta el rendimiento
+3. Comparar uso de memoria entre diferentes algoritmos
+4. Identificar cuándo un algoritmo se vuelve impracticable
+5. Relacionar teoría de complejidad con mediciones empíricas
