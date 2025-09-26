@@ -162,7 +162,7 @@ void probar_merge_sort() {
         
         // Mostrar resultados
         printf("  Tiempo de ejecución: %.6f ms\n", tiempo_ejecucion);
-        printf("  Memoria usada: %zu bytes\n", memoria_usada);
+        printf("  Memoria usada: %lu bytes\n", (unsigned long)memoria_usada);
         printf("  Arreglo ordenado correctamente: %s\n", ordenado ? "Sí" : "No");
         
         // Mostrar algunos elementos del arreglo ordenado (solo para arreglos pequeños)
@@ -189,10 +189,10 @@ void probar_merge_sort() {
     printf("\n=== RESUMEN MERGE SORT ===\n");
     printf("Tamaño\tTiempo(ms)\tMemoria(bytes)\n");
     for (int i = 0; i < num_tamanos; i++) {
-        printf("%d\t%.6f\t%zu\n", 
+        printf("%d\t%.6f\t%lu\n", 
                mediciones[i].tamano_entrada,
                mediciones[i].tiempo_ejecucion,
-               mediciones[i].memoria_usada);
+               (unsigned long)mediciones[i].memoria_usada);
     }
     
     free(mediciones);

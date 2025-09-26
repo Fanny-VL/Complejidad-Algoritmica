@@ -1,0 +1,6 @@
+Resultados para busqueda_lineal
+=====================================
+Tamaño	Tiempo(ms)	Memoria(bytes)
+1000	0.000000	0
+10000	0.000000	0
+100000	0.000000	0

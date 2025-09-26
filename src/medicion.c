@@ -2,18 +2,48 @@
 
 // Función para obtener tiempo actual en milisegundos
 double obtener_tiempo_actual() {
+#ifdef _WIN32
+    // Para Windows
+    FILETIME ft;
+    ULARGE_INTEGER uli;
+    GetSystemTimeAsFileTime(&ft);
+    uli.LowPart = ft.dwLowDateTime;
+    uli.HighPart = ft.dwHighDateTime;
+    return (double)(uli.QuadPart / 10000.0); // Convertir a milisegundos
+#else
+    // Para Linux/macOS
     struct timeval tv;
     gettimeofday(&tv, NULL);
     return tv.tv_sec * 1000.0 + tv.tv_usec / 1000.0;
+#endif
 }
 
 // Función para obtener memoria usada por el proceso
 size_t obtener_memoria_usada() {
+#ifdef _WIN32
+    // Para Windows
     PROCESS_MEMORY_COUNTERS pmc;
     if (GetProcessMemoryInfo(GetCurrentProcess(), &pmc, sizeof(pmc))) {
         return pmc.WorkingSetSize;
     }
     return 0;
+#else
+    // Para Linux/macOS - implementación básica
+    FILE* file = fopen("/proc/self/status", "r");
+    if (file == NULL) return 0;
+    
+    char line[256];
+    size_t memory = 0;
+    while (fgets(line, sizeof(line), file)) {
+        if (strncmp(line, "VmRSS:", 6) == 0) {
+            sscanf(line, "VmRSS: %zu kB", &memory);
+            memory *= 1024; // Convertir de kB a bytes
+            break;
+        }
+    }
+    fclose(file);
+    return memory;
+#endif
 }
 
 // Función para generar arreglo aleatorio
@@ -90,10 +120,10 @@ void guardar_resultados(const char* nombre_algoritmo, Medicion* mediciones, int 
     fprintf(archivo, "Tamaño\tTiempo(ms)\tMemoria(bytes)\n");
     
     for (int i = 0; i < num_mediciones; i++) {
-        fprintf(archivo, "%d\t%.6f\t%zu\n", 
+        fprintf(archivo, "%d\t%.6f\t%lu\n", 
                 mediciones[i].tamano_entrada,
                 mediciones[i].tiempo_ejecucion,
-                mediciones[i].memoria_usada);
+                (unsigned long)mediciones[i].memoria_usada);
     }
     
     fclose(archivo);

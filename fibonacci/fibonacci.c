@@ -85,7 +85,7 @@ void probar_fibonacci_recursivo() {
         
         // Mostrar resultados
         printf("  Tiempo de ejecución: %.6f ms\n", tiempo_ejecucion);
-        printf("  Memoria usada: %zu bytes\n", memoria_usada);
+        printf("  Memoria usada: %lu bytes\n", (unsigned long)memoria_usada);
         printf("  Fibonacci(%d) = %lld\n", n, resultado);
     }
     
@@ -97,10 +97,10 @@ void probar_fibonacci_recursivo() {
     printf("n\tTiempo(ms)\tMemoria(bytes)\tResultado\n");
     for (int i = 0; i < num_valores; i++) {
         long long resultado = fibonacci_recursivo(valores[i]);
-        printf("%d\t%.6f\t%zu\t\t%lld\n", 
+        printf("%d\t%.6f\t%lu\t\t%lld\n", 
                mediciones[i].tamano_entrada,
                mediciones[i].tiempo_ejecucion,
-               mediciones[i].memoria_usada,
+               (unsigned long)mediciones[i].memoria_usada,
                resultado);
     }
     

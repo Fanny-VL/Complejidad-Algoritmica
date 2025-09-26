@@ -5,6 +5,13 @@ CC = gcc
 # Flags de compilación
 CFLAGS = -Wall -Wextra -std=c99 -O2
 
+# Librerías para Windows
+ifeq ($(OS),Windows_NT)
+    LIBS = -lpsapi
+else
+    LIBS = 
+endif
+
 # Directorios
 SRC_DIR = src
 RESULTADOS_DIR = resultados
@@ -25,27 +32,27 @@ $(RESULTADOS_DIR):
 
 # Búsqueda Lineal
 busqueda_lineal: busqueda_lineal/busqueda_lineal.c $(MEDICION_SRC) $(MEDICION_H) | $(RESULTADOS_DIR)
-	$(CC) $(CFLAGS) -o busqueda_lineal busqueda_lineal/busqueda_lineal.c $(MEDICION_SRC)
+	$(CC) $(CFLAGS) -o busqueda_lineal busqueda_lineal/busqueda_lineal.c $(MEDICION_SRC) $(LIBS)
 
 # Búsqueda Binaria
 busqueda_binaria: busqueda_binaria/busqueda_binaria.c $(MEDICION_SRC) $(MEDICION_H) | $(RESULTADOS_DIR)
-	$(CC) $(CFLAGS) -o busqueda_binaria busqueda_binaria/busqueda_binaria.c $(MEDICION_SRC)
+	$(CC) $(CFLAGS) -o busqueda_binaria busqueda_binaria/busqueda_binaria.c $(MEDICION_SRC) $(LIBS)
 
 # Bubble Sort
 bubble_sort: bubble_sort/bubble_sort.c $(MEDICION_SRC) $(MEDICION_H) | $(RESULTADOS_DIR)
-	$(CC) $(CFLAGS) -o bubble_sort bubble_sort/bubble_sort.c $(MEDICION_SRC)
+	$(CC) $(CFLAGS) -o bubble_sort bubble_sort/bubble_sort.c $(MEDICION_SRC) $(LIBS)
 
 # Merge Sort
 merge_sort: merge_sort/merge_sort.c $(MEDICION_SRC) $(MEDICION_H) | $(RESULTADOS_DIR)
-	$(CC) $(CFLAGS) -o merge_sort merge_sort/merge_sort.c $(MEDICION_SRC)
+	$(CC) $(CFLAGS) -o merge_sort merge_sort/merge_sort.c $(MEDICION_SRC) $(LIBS)
 
 # Fibonacci
 fibonacci: fibonacci/fibonacci.c $(MEDICION_SRC) $(MEDICION_H) | $(RESULTADOS_DIR)
-	$(CC) $(CFLAGS) -o fibonacci fibonacci/fibonacci.c $(MEDICION_SRC)
+	$(CC) $(CFLAGS) -o fibonacci fibonacci/fibonacci.c $(MEDICION_SRC) $(LIBS)
 
 # Programa principal
 main: main.c $(MEDICION_SRC) $(MEDICION_H) | $(RESULTADOS_DIR)
-	$(CC) $(CFLAGS) -o main main.c $(MEDICION_SRC)
+	$(CC) $(CFLAGS) -o main main.c $(MEDICION_SRC) $(LIBS)
 
 # Ejecutar todas las pruebas
 run-all: main

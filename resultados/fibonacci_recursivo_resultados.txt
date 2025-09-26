@@ -1,0 +1,8 @@
+Resultados para fibonacci_recursivo
+=====================================
+Tamaño	Tiempo(ms)	Memoria(bytes)
+1	0.000000	0
+5	0.000000	0
+10	0.000000	0
+15	0.000000	0
+20	0.000000	0
